@@ -13,6 +13,8 @@ import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import { useState } from "react";
+import Script from "next/script";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +31,10 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body className="dark:bg-slate-900">{children}</body>
+      <body className="dark:bg-slate-900">{children}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4421482351262183"
+     crossorigin="anonymous"></script>
+  </body>
       <Script src="/assets/libs/tiny-slider/min/tiny-slider.js"></Script>
       <Script src="/assets/libs/tobii/js/tobii.min.js"></Script>
       <Script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js"></Script>
