@@ -1,6 +1,7 @@
-'use client'
-
 import { Inter } from "next/font/google";
+import Script from "next/script";
+
+// Global styles
 import "@/public/assets/libs/tiny-slider/tiny-slider.css";
 import "@/public/assets/libs/tobii/css/tobii.min.css";
 import "@/public/assets/libs/choices.js/public/assets/styles/choices.min.css";
@@ -9,50 +10,37 @@ import "@/public/assets/libs/@iconscout/unicons/css/line.css";
 import "@/public/assets/libs/@mdi/font/css/materialdesignicons.min.css";
 import "@/public/assets/css/tailwind.min.css";
 import "@/public/assets/css/font.css";
-import Script from "next/script";
-import BackToTop from "@/components/BackToTop";
-import ThemeSwitch from "@/components/ThemeSwitch";
-import { useState } from "react";
+
+// Components
+import ClientLayout from "./ClientLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }) {
-  const [theme, setTheme] = useState(false);
+export const metadata = {
+  other: {
+    "google-adsense-account": "ca-pub-4421482351262183",
+  },
+  icons: {
+    icon: "/favicon.png",
+  },
+};
 
+export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${theme === false ? "dark" : "light"} scroll-smooth`}
-      dir="ltr"
-    >
-      <head>
-        <link rel="icon" href="/favicon.png" />
-        {/* Adsense Script */}
+    <html lang="en" dir="ltr" className="scroll-smooth">
+      <body className={`${inter.className} dark:bg-slate-900`}>
+
+        {/* Google AdSense */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4421482351262183"
-          strategy="afterInteractive"
           crossOrigin="anonymous"
         />
-      </head>
 
-      <body className="dark:bg-slate-900">
-        {children}
+        <ClientLayout>
+          {children}
+        </ClientLayout>
 
-        
-
-        {/* Other Scripts */}
-        <Script src="/assets/libs/tiny-slider/min/tiny-slider.js" />
-        <Script src="/assets/libs/tobii/js/tobii.min.js" />
-        <Script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js" />
-        <Script src="/assets/libs/swiper/js/swiper.min.js" />
-        <Script src="/assets/js/easy_background.js" />
-        <Script src="/assets/libs/feather-icons/feather.min.js" />
-        <Script src="/assets/js/plugins.init.js" />
-        <Script src="/assets/js/app.js" />
-
-        <BackToTop />
-        <ThemeSwitch setTheme={setTheme} theme={theme} />
       </body>
     </html>
   );
