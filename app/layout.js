@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Script from "next/script";
+import Script from "next/script":
 
 // Global styles
 import "@/public/assets/libs/tiny-slider/tiny-slider.css";
