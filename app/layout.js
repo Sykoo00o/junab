@@ -1,5 +1,8 @@
+'use client';
+
 import { Inter } from "next/font/google";
-import Script from "next/script":
+import Script from "next/script";
+import { useState } from "react";
 
 // Global styles
 import "@/public/assets/libs/tiny-slider/tiny-slider.css";
@@ -12,35 +15,52 @@ import "@/public/assets/css/tailwind.min.css";
 import "@/public/assets/css/font.css";
 
 // Components
-import ClientLayout from "./ClientLayout";
+import BackToTop from "@/components/BackToTop";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  other: {
-    "google-adsense-account": "ca-pub-4421482351262183",
-  },
-  icons: {
-    icon: "/favicon.png",
-  },
-};
-
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en" dir="ltr" className="scroll-smooth">
-      <body className={`${inter.className} dark:bg-slate-900`}>
+  const [theme, setTheme] = useState(false);
 
-        {/* Google AdSense */}
+  return (
+    <html
+      lang="en"
+      dir="ltr"
+      className={`${theme ? "light" : "dark"} scroll-smooth`}
+    >
+      <head>
+        {/* Google AdSense verification */}
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-4421482351262183"
+        />
+
+        <link rel="icon" href="/favicon.png" />
+      </head>
+
+      <body className={`${inter.className} dark:bg-slate-900`}>
+        {/* Google AdSense script */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4421482351262183"
           crossOrigin="anonymous"
         />
 
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        {children}
 
+        {/* JS Libraries */}
+        <Script src="/assets/libs/tiny-slider/min/tiny-slider.js" />
+        <Script src="/assets/libs/tobii/js/tobii.min.js" />
+        <Script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js" />
+        <Script src="/assets/libs/swiper/js/swiper.min.js" />
+        <Script src="/assets/js/easy_background.js" />
+        <Script src="/assets/libs/feather-icons/feather.min.js" />
+        <Script src="/assets/js/plugins.init.js" />
+        <Script src="/assets/js/app.js" />
+
+        <BackToTop />
+        <ThemeSwitch setTheme={setTheme} theme={theme} />
       </body>
     </html>
   );
