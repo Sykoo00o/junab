@@ -27,11 +27,6 @@ export default function RootLayout({ children }) {
     >
       <head>
         <link rel="icon" href="/favicon.png" />
-      </head>
-
-      <body className="dark:bg-slate-900">
-        {children}
-
         {/* Adsense Script */}
         <Script
           async
@@ -39,6 +34,12 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
           crossOrigin="anonymous"
         />
+      </head>
+
+      <body className="dark:bg-slate-900">
+        {children}
+
+        
 
         {/* Other Scripts */}
         <Script src="/assets/libs/tiny-slider/min/tiny-slider.js" />
