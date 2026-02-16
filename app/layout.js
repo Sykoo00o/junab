@@ -13,38 +13,46 @@ import Script from "next/script";
 import BackToTop from "@/components/BackToTop";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import { useState } from "react";
-import Script from "next/script";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata = {
-//   title: "JUNAIB REALTY",
-//   description: "We will help you build your Wonderful home",
-// };
-
 export default function RootLayout({ children }) {
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState(false);
 
   return (
-    <html lang="en" className={`${theme === false? "dark" : "light"} scroll-smooth`} dir="ltr">
+    <html
+      lang="en"
+      className={`${theme === false ? "dark" : "light"} scroll-smooth`}
+      dir="ltr"
+    >
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body className="dark:bg-slate-900">{children}
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4421482351262183"
-     crossorigin="anonymous"></script>
-  </body>
-      <Script src="/assets/libs/tiny-slider/min/tiny-slider.js"></Script>
-      <Script src="/assets/libs/tobii/js/tobii.min.js"></Script>
-      <Script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js"></Script>
-      <Script src="/assets/libs/swiper/js/swiper.min.js"></Script>
-      <Script src="/assets/js/easy_background.js"></Script>
-      <Script src="/assets/libs/feather-icons/feather.min.js"></Script>
-      <Script src="/assets/js/plugins.init.js"></Script>
-      <Script src="/assets/js/app.js"></Script>
-      <BackToTop />
-      <ThemeSwitch setTheme={setTheme} theme={theme} />
+
+      <body className="dark:bg-slate-900">
+        {children}
+
+        {/* Adsense Script */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4421482351262183"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
+
+        {/* Other Scripts */}
+        <Script src="/assets/libs/tiny-slider/min/tiny-slider.js" />
+        <Script src="/assets/libs/tobii/js/tobii.min.js" />
+        <Script src="/assets/libs/choices.js/public/assets/scripts/choices.min.js" />
+        <Script src="/assets/libs/swiper/js/swiper.min.js" />
+        <Script src="/assets/js/easy_background.js" />
+        <Script src="/assets/libs/feather-icons/feather.min.js" />
+        <Script src="/assets/js/plugins.init.js" />
+        <Script src="/assets/js/app.js" />
+
+        <BackToTop />
+        <ThemeSwitch setTheme={setTheme} theme={theme} />
+      </body>
     </html>
   );
 }
